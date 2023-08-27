@@ -2,9 +2,9 @@
 import 'package:clean_architechture_temp/core/constants/asset_constants.dart';
 import 'package:clean_architechture_temp/core/extensions/common_extensions.dart';
 import 'package:clean_architechture_temp/features/book/presentation/blocs/article/remote/bloc/remote_book_bloc.dart';
+import 'package:clean_architechture_temp/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'book_item.dart';
 
 class HorizonralBookSection extends StatefulWidget {
@@ -21,6 +21,11 @@ class _HorizonralBookSectionState extends State<HorizonralBookSection>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+  }
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
@@ -53,7 +58,7 @@ class _HorizonralBookSectionState extends State<HorizonralBookSection>
         width: context.highValue,
         child: Row(
           children: [
-            _buildVerticalTabBar(_tabController, context),
+            _buildVerticalTabBar(_tabController),
             Expanded(
               child: SizedBox(
                 width: double.infinity,
@@ -79,7 +84,7 @@ class _HorizonralBookSectionState extends State<HorizonralBookSection>
   }
 }
 
-_buildVerticalTabBar(TabController tabController, BuildContext context) {
+_buildVerticalTabBar(TabController tabController, ) {
   return RotatedBox(
     quarterTurns: 3,
     child: DefaultTabController(
@@ -105,31 +110,26 @@ _buildVerticalTabBar(TabController tabController, BuildContext context) {
           onTap: (int) {
             switch (int) {
               case 0:
-                context
-                    .read<RemoteBookBloc>()
+                sl<RemoteBookBloc>()
                     .add(RemoteLoadNewestBooksEvent());
-
                 break;
               case 1:
-                context.read<RemoteBookBloc>().add(RemoteLoadBooksEvent());
+                sl<RemoteBookBloc>().add(RemoteLoadBooksEvent());
                 break;
               case 2:
-                context
-                    .read<RemoteBookBloc>()
-                    .add(RemoteLoadPopularBooksEvent());
-
+               sl<RemoteBookBloc>().add(RemoteLoadPopularBooksEvent());
                 break;
             }
           },
           tabs: const [
             Tab(
-              text: "Popular",
+              text: "Newest",
             ),
             Tab(
               text: "BestSellers",
             ),
             Tab(
-              text: "Newest",
+              text: "Popular",
             ),
           ]),
     ),

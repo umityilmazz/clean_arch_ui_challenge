@@ -1,6 +1,8 @@
+import 'package:clean_architechture_temp/features/book/presentation/blocs/article/remote/bloc/remote_book_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'bloc_observer.dart';
 import 'config/theme/colors/app_colors.dart';
 import 'features/book/presentation/pages/home_page.dart';
@@ -21,9 +23,12 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: AppColors.scafoldBackground),
     );
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: BlocProvider(
+        create: (context) => sl<RemoteBookBloc>(),
+        child: const HomePage(),
+      ),
     );
   }
 }

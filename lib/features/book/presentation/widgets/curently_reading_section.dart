@@ -1,10 +1,11 @@
-import '../blocs/article/remote/bloc/remote_book_bloc.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/coomon/animation_try.dart';
-import '../../../../core/extensions/common_extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../config/theme/colors/app_colors.dart';
 import '../../../../core/constants/text_constants.dart';
+import '../../../../core/coomon/animation_try.dart';
+import '../../../../core/extensions/common_extensions.dart';
+import '../blocs/article/remote/bloc/remote_book_bloc.dart';
 
 class CurentlyReadingSection extends StatelessWidget {
   const CurentlyReadingSection({
@@ -12,20 +13,20 @@ class CurentlyReadingSection extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final state=context.watch<RemoteBookBloc>().state;
-    if(state is RemoteBookLoaded || state is RemoteBookLoadedNewest || state is RemoteBookLoadedPopular){
-      final bookItem=state.curentlyReadingBook;
-        return bookItem != null
-        ? _imageBox(context,
-            imgPath: bookItem.volumeInfo?.imageLinks?.smallThumbnail)
-        : _errorBox(context);
-    }else{
-      return _imageBox(context);
-    }
-  
+    return BlocBuilder<RemoteBookBloc, RemoteBookState>(
+      builder: (context, state) => switch (state) {
+        RemoteBookLoaded() ||
+        RemoteBookLoadedNewest() ||
+        RemoteBookLoadedPopular() =>
+          _imageBox(context,
+              imgPath: state
+                  .curentlyReadingBook?.volumeInfo?.imageLinks?.smallThumbnail),
+        RemoteBookInitial() || RemoteBookLoading() => _imageBox(context)
+      },
+    );
   }
 
-SliverToBoxAdapter _imageBox(BuildContext context, {String? imgPath}) {
+  SliverToBoxAdapter _imageBox(BuildContext context, {String? imgPath}) {
     return SliverToBoxAdapter(
       child: SizedBox(
         height: context.highValue * 2.7,
@@ -59,7 +60,7 @@ SliverToBoxAdapter _imageBox(BuildContext context, {String? imgPath}) {
     );
   }
 
-SliverToBoxAdapter _errorBox(BuildContext context) {
+  SliverToBoxAdapter _errorBox(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
           height: context.highValue * 2.7,
@@ -98,7 +99,7 @@ Container _bookAndAuthorName(BuildContext context) {
         ),
         context.emptySizedHeightBoxLow,
         SizedBox(
-          width: 100,
+          width: context.highValue * 2.2,
           child: Row(
             children: [
               Flexible(

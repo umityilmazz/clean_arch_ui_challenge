@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../core/constants/asset_constants.dart';
 
 class ProfileImageCard extends StatelessWidget {

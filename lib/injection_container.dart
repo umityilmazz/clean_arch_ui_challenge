@@ -26,5 +26,6 @@ Future<void> initializeDependencies() async {
       GetCurentlyReadingBookUseCase());
 
   // BLOCS
-  sl.registerLazySingleton<RemoteBookBloc>(() => RemoteBookBloc(sl(), sl()));
+  sl.registerSingleton<RemoteBookBloc>( RemoteBookBloc(
+      sl<GetBooksUseCase>(), sl<GetCurentlyReadingBookUseCase>()));
 }

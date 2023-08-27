@@ -1,4 +1,4 @@
-import 'package:clean_architechture_temp/features/book/presentation/blocs/article/remote/bloc/remote_book_bloc.dart';
+import '../blocs/article/remote/bloc/remote_book_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +12,7 @@ class BookListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageUrl = context
-        .read<RemoteBookBloc>()
+        .watch<RemoteBookBloc>()
         .state
         .curentlyReadingBook
         ?.volumeInfo

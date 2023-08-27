@@ -21,10 +21,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    _carouselSliderController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: CarouselSlider(
+          keepPage: true,
+          onSlideStart: () {
+            print("ON SLIDE START");
+          },
+          onSlideChanged: (value) {
+            if (value == 0) {
+              print("SLIDE 0 PAGE");
+            }
+            if (value == 1) {
+              print("SLIDE PAGE 1");
+            }
+          },
+          scrollPhysics: const NeverScrollableScrollPhysics(),
           autoSliderTransitionTime: const Duration(seconds: 1),
           autoSliderDelay: const Duration(seconds: 2),
           controller: _carouselSliderController,

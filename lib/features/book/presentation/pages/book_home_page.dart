@@ -20,24 +20,21 @@ class BookHomePage extends StatelessWidget {
   final CarouselSliderController carouselSliderController;
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<RemoteBookBloc>(
-      create: (context) => sl(),
-      child: Container(
-        color: AppColors.scafoldBackground,
-        child: SafeArea(
-          child: Scaffold(
-            backgroundColor: AppColors.scafoldBackground,
-            body: CustomScrollView(
-              slivers: [
-                HeaderSection(
-                    carouselSliderController: carouselSliderController),
-                SliverPadding(padding: context.onlyTopPaddingLow),
-                const AnimatedUserWelcomeText(userName: "Umit"),
-                const CurentlyReadingSection(),
-                const HorizonralBookSection(),
-                const BookListCard()
-              ],
-            ),
+    return Container(
+      color: AppColors.scafoldBackground,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.scafoldBackground,
+          body: CustomScrollView(
+            slivers: [
+              HeaderSection(
+                  carouselSliderController: carouselSliderController),
+              SliverPadding(padding: context.onlyTopPaddingLow),
+              const AnimatedUserWelcomeText(userName: "Umit"),
+              const CurentlyReadingSection(),
+              const HorizonralBookSection(),
+              const BookListCard()
+            ],
           ),
         ),
       ),
