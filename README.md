@@ -2,15 +2,32 @@
 
 A new Flutter project.
 
-## Getting Started
+## Flutter Book App UI with Google Books api
 
-This project is a starting point for a Flutter application.
+In this project, I integrated a UI design made with Swift using flutter. Clean architechture was used in this project.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+https://github.com/umityilmazz/clean_arch_ui_challenge/assets/81180370/c144fb9b-b048-4074-9a58-858976573100
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Packages Used 
+flutter_bloc</br>
+get_it</br>
+intl</br>
+retrofit</br>
+equatable</br>
+json_annotation</br>
+json_serializable</br>
+dio</br>
+## UI Animation Design
+cupertino_icons
+cached_network_image
+flutter_animate
+animated_text_kit
+flutter_carousel_slider
+flutter_staggered_animations
+google_fonts
+provider
+flutter_lints
+retrofit_generator
+build_runner
